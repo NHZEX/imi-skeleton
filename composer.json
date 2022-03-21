@@ -1,0 +1,58 @@
+{
+    "name": "zxin/imi-skeleton",
+    "type": "project",
+    "description": "脚手架",
+    "require": {
+        "php": "^7.4|^8.0",
+        "ext-bcmath": "*",
+        "ext-json": "*",
+        "ext-posix": "*",
+        "illuminate/collections": "^8.54",
+        "imiphp/imi": "~2.1.6",
+        "imiphp/imi-queue": "~2.1.2",
+        "imiphp/imi-swoole": "~2.1.5",
+        "league/mime-type-detection": "^1.9",
+        "nesbot/carbon": "^2.51",
+        "symfony/finder": "^5.3",
+        "symfony/polyfill-php80": "^1.22",
+        "symfony/polyfill-php81": "^1.22",
+        "symfony/process": "^5.3",
+        "symfony/var-dumper": "^5.3",
+        "symfony/var-exporter": "^5.3",
+        "zxin/utils": "^2.3"
+    },
+    "require-dev": {
+        "imiphp/imi-phar": "~2.1",
+        "swoole/ide-helper": "^4.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "ImiApp\\": "./"
+        },
+        "files": [
+            "bootstrap.php"
+        ]
+    },
+    "suggest": {
+        "ext-xlswriter": "xlswriter"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
+        },
+        "platform": {
+            "php": "7.4"
+        }
+    },
+    "repositories": [
+        {
+            "type":"composer",
+            "url": "https://mirrors.aliyun.com/composer/",
+            "canonical": false
+        }
+    ],
+    "imi": {
+        "namespace": "ImiApp"
+    }
+}

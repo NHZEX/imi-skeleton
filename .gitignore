@@ -1,0 +1,12 @@
+/.idea
+/.vscode
+/.history
+/.runtime
+/vendor
+/.env
+/.php_cs.cache
+/.phpunit.result.cache
+/test*.php
+/*.phar
+/*.zip
+/bin
