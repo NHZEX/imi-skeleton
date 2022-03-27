@@ -3,9 +3,11 @@
 namespace ImiApp\ApiServer;
 
 use Imi\App;
+use Imi\Log\Log;
 use Imi\RequestContext;
 use Imi\Server\Http\Error\JsonErrorHandler;
 use Imi\Server\View\Handler\Json;
+use ImiApp\ApiServer\Exception\ValidationException;
 use function explode;
 
 class ErrorHandler extends JsonErrorHandler
@@ -16,6 +18,23 @@ class ErrorHandler extends JsonErrorHandler
 
     public function handle(\Throwable $throwable): bool
     {
+        if ($throwable instanceof ValidationException) {
+            $data = [
+                'success' => false,
+                'message' => '[Validation] ' . $throwable->getMessage(),
+            ];
+
+            /** @var Json $jsonView */
+            $jsonView = RequestContext::getServer()->getBean('JsonView');
+            $jsonView
+                ->handle($this->viewAnnotation, null, $data, RequestContext::getContext()['response'] ?? null)
+                ->withStatus(400)
+                ->send();
+
+            Log::warning($data['message']);
+
+            return true;
+        }
         if ($this->releaseShow || App::isDebug())
         {
             $data = [

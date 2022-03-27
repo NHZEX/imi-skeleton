@@ -4,6 +4,7 @@ use Imi\App;
 use Imi\Log\Formatter\ConsoleLineFormatter;
 use Imi\Log\Handler\ConsoleHandler;
 use Imi\Swoole\Server\Type;
+use ImiApp\ApiServer\Exception\ValidationException;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\RotatingFileHandler;
 
@@ -121,5 +122,10 @@ return [
                 ],
             ],
         ],
+    ],
+
+    'validation' => [
+        'exception' => ValidationException::class,
+        'exCode' => 0,
     ],
 ];
